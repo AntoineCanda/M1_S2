@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New XSD document created with EditiX XML Editor (http://www.editix.com) at Tue Feb 07 21:56:16 CET 2017 -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+
+	<xs:element name="nom">
+
+		<xs:simpleType>
+
+			<xs:restriction base="xs:string"/>
+
+		</xs:simpleType>
+
+	</xs:element>
+
+	
+
+	<xs:element name="ville">
+
+		<xs:simpleType>
+
+			<xs:restriction base="xs:string"/>
+
+		</xs:simpleType>
+
+	</xs:element>
+
+	
+
+
+	<xs:simpleType name="TAG">
+
+		<xs:restriction base="xs:string">
+
+			<xs:maxLength value="5"/>
+
+		</xs:restriction>
+
+	</xs:simpleType>
+
+	
+	<xs:element name="club">
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element ref="nom"/>
+				<xs:element ref="ville"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="clubReceveur" type="TAG" />
+	
+
+	<xs:element name="clubInvité" type="TAG" />
+	
+	<xs:simpleType name="mylist">
+		<xs:list itemType="xs:integer"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="myListRestricted">
+		<xs:restriction base="mylist">
+			<xs:pattern value="[0-9]* [0-9]*"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:element name="score" type="myListRestricted"/>
+	
+	<xs:element name="rencontre">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="clubReceveur"/>
+				<xs:element ref="clubInvité"/>
+				<xs:element ref="score"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="date">
+		<xs:simpleType>
+			<xs:restriction base="xs:date"/>
+		</xs:simpleType>
+	</xs:element>
+	
+	<xs:element name="journée">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="date"/>
+				<xs:element ref="rencontre" minOccurs="0" maxOccurs="10"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:integer"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="clubs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="club" minOccurs="20" maxOccurs="20"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="journées">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="journée" minOccurs="0" maxOccurs="38"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="championnat">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="clubs"/>
+				<xs:element ref="journées"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

@@ -1,0 +1,132 @@
+Requete exercice 1 tp 7
+
+req 1
+
+declare variable $bib := "biblio.xml" ;
+
+<bib> 
+   { 
+   for $b in doc($bib)//book 
+   where $b/publisher = "Addison-Wesley" and 
+       $b/@year > 1991 
+   return 
+      <book year="{$b/@year}"> 
+         {$b/title} 
+      </book> 
+   } 
+</bib>
+
+req 2
+
+let $bib := "biblio.xml"
+return
+<results> 
+   { 
+   for $b in doc($bib)//book, 
+       $t in $b/title, 
+       $a in $b/author 
+   return 
+      <result> 
+         {$t,$a} 
+      </result> 
+} 
+</results>
+
+req 3:
+
+let $bib := "biblio.xml"
+return
+<results> { 
+let $a := doc($bib)//author 
+for $last in distinct-values($a/last), 
+$first in distinct-values($a[last=$last]/first) 
+order by $last, $first 
+return 
+<result><author> <last>{$last}</last> 
+<first>{$first}</first> </author> 
+   { for $b in doc($bib)/bib/book 
+     where some $ba in $b/author 
+     satisfies ($ba/last = $last and  
+                $ba/first=$first) 
+     return $b/title } 
+      </result>   } 
+</results>
+
+req 4: 
+
+declare function local:books-by-author ($root, $last, $first) { 
+   for $b in $root/book 
+   where some $ba in $b/author 
+   satisfies ($ba/last = $last and  
+              $ba/first=$first) 
+   return $b/title  
+}; 
+let $bib := "biblio.xml"
+return
+<results> {
+let $a := doc($bib)//author 
+for $last in distinct-values($a/last), 
+$first in distinct-values($a[last=$last]/first) 
+order by $last, $first
+return <result> 
+   <author> <last>{$last}</last>   
+   <first>{$first}</first> </author> 
+   {local:books-by-author(doc($bib)/bib, $last, $first)} 
+   </result> 
+   } 
+</results>
+
+req 5:
+
+let $bib := "biblio.xml"
+return
+<bib> 
+   {  
+ for $b in doc($bib)//book 
+   where count($b/author) > 0 
+   return 
+      <book> 
+      {$b/title} 
+      { for $a in $b/author[position() <= 2] 
+        return $a } 
+      { if (count($b/author) > 2) 
+        then <et-al/> else () } 
+  </book>
+} 
+</bib>
+
+req 6:
+
+declare function local:books-by-author ($root, $last, $first) { 
+   for $b in $root/book 
+   where some $ba in $b/author 
+   satisfies ($ba/last = $last and  
+              $ba/first=$first) 
+   return $b/title  
+}; 
+
+let $bib := "biblio.xml"
+return
+<results> {
+let $a := doc($bib)//author 
+for $last in distinct-values($a/last), 
+$first in distinct-values($a[last=$last]/first) 
+order by $last, $first
+return <result> 
+   <author> <last>{$last}</last>   
+   <first>{$first}</first> </author> 
+   <number> {count(local:books-by-author(doc($bib)/bib,$last, $first))} </number>
+    </result> 
+   } 
+</results>
+
+req 7: 
+
+let $bib := "biblio.xml"
+return
+<data> {
+for $year in distinct-values(doc($bib)//book/@year) 
+let $avg := avg(doc($bib)//book[@year=$year]/price/text())
+return <year value="{$year}" avgprice="{$avg}"/>
+   } 
+</data>

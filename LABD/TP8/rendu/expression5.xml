@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<expr xsi:schemaLocation="http://www.expression.org expression.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.expression.org">
+  <op val="*">
+    <op val="-">
+      <op val="+">
+        <op val="+">
+          <op val="-">
+            <cons>-50</cons>
+            <cons>-118</cons>
+          </op>
+          <op val="*">
+            <op val="*">
+              <cons>3</cons>
+              <cons>-125</cons>
+            </op>
+            <op val="+">
+              <op val="-">
+                <cons>-11</cons>
+                <cons>103</cons>
+              </op>
+              <op val="*">
+                <cons>-84</cons>
+                <cons>19</cons>
+              </op>
+            </op>
+          </op>
+        </op>
+        <op val="+">
+          <op val="+">
+            <op val="-">
+              <cons>-32</cons>
+              <cons>-30</cons>
+            </op>
+            <op val="*">
+              <cons>-88</cons>
+              <cons>-61</cons>
+            </op>
+          </op>
+          <op val="+">
+            <op val="+">
+              <op val="-">
+                <op val="-">
+                  <cons>19</cons>
+                  <cons>-8</cons>
+                </op>
+                <op val="+">
+                  <op val="*">
+                    <cons>-109</cons>
+                    <cons>-48</cons>
+                  </op>
+                  <op val="-">
+                    <cons>9</cons>
+                    <cons>113</cons>
+                  </op>
+                </op>
+              </op>
+              <op val="-">
+                <cons>-69</cons>
+                <cons>-55</cons>
+              </op>
+            </op>
+            <op val="+">
+              <op val="-">
+                <cons>-79</cons>
+                <cons>-108</cons>
+              </op>
+              <op val="*">
+                <cons>60</cons>
+                <cons>34</cons>
+              </op>
+            </op>
+          </op>
+        </op>
+      </op>
+      <op val="*">
+        <op val="+">
+          <op val="*">
+            <op val="*">
+              <cons>82</cons>
+              <cons>-104</cons>
+            </op>
+            <op val="+">
+              <cons>58</cons>
+              <cons>-86</cons>
+            </op>
+          </op>
+          <op val="*">
+            <cons>-4</cons>
+            <cons>38</cons>
+          </op>
+        </op>
+        <op val="+">
+          <op val="-">
+            <op val="+">
+              <op val="*">
+                <cons>-90</cons>
+                <cons>10</cons>
+              </op>
+              <op val="+">
+                <cons>-71</cons>
+                <cons>-60</cons>
+              </op>
+            </op>
+            <op val="-">
+              <op val="*">
+                <cons>-25</cons>
+                <cons>-77</cons>
+              </op>
+              <op val="-">
+                <op val="*">
+                  <cons>120</cons>
+                  <cons>-59</cons>
+                </op>
+                <op val="-">
+                  <cons>-94</cons>
+                  <cons>36</cons>
+                </op>
+              </op>
+            </op>
+          </op>
+          <op val="*">
+            <op val="+">
+              <cons>36</cons>
+              <cons>-124</cons>
+            </op>
+            <op val="-">
+              <cons>36</cons>
+              <cons>-99</cons>
+            </op>
+          </op>
+        </op>
+      </op>
+    </op>
+    <op val="-">
+      <op val="+">
+        <cons>24</cons>
+        <cons>-84</cons>
+      </op>
+      <op val="*">
+        <cons>-89</cons>
+        <cons>-49</cons>
+      </op>
+    </op>
+  </op>
+</expr>

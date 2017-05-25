@@ -1,0 +1,20 @@
+Exercice 4
+
+Q1 : voir le fichier personne.xsd
+
+Q2 : Dans la requête //* on a un résultat alors que pour //nom on a aucun résultat.
+La raison est simple: dans la requête //nom on ne fait pas référence à un espace de nom et donc nous avons pas de résultat.
+En modifiant la requête comme ceci :
+declare namespace mns="http://www.fil.univ-lille1.fr/labd";
+//mns:nom
+Nous avons bien un résultat.
+
+Q3 : 
+ declare namespace labd="http://www.fil.univ-lille1.fr/labd";
+//*/labd:personne[./labd:sexe="M"]/labd:naissance/labd:date
+ ou 
+ declare namespace labd="http://www.fil.univ-lille1.fr/labd";
+ for $p in //labd:personnes/labd:personne[labd:sexe[text() = 'M']]
+		return $p/labd:naissance/labd:date
+	
+	

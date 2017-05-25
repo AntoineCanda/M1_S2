@@ -1,0 +1,146 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE itineraire SYSTEM "itineraire.dtd">
+=======
+<?xml version = "1.0" encoding="UTF-8"?>
+
+<!DOCTYPE itineraire SYSTEM "itineraires.dtd">
+
+
+>>>>>>> 9192c06740ae83d17f3ca8c6d2a55b49c1e5f5dd
+<itineraire>
+	<information>
+		<depart>
+			Seclin - Centre hospitalier
+		</depart>
+		<arrivee>
+			Roubaix - Avenue Motte
+		</arrivee>
+		<date>
+			Mardi 22 janvier
+		</date>
+		<heure>
+			12h35
+		</heure>
+		<modeTrajet>
+			 Métro-Tramway-Bus-Car
+		</modeTrajet>
+		<preference>
+			Arriver le plus rapidement
+		</preference>
+		<marche vitesse="normale"/>
+		<dureeTrajet>
+			1h27min
+		</dureeTrajet>
+	</information>
+	<detail>
+		<etape>
+			<mode>
+				marche 
+			</mode>
+			<duree unite="min">
+				13
+			</duree>
+			<arretDepart>
+				Seclin - Centre hospitalier
+			</arretDepart>
+			<arretArrive>
+				Seclin - Hôtel de Ville
+			</arretArrive>
+		</etape>
+		<etape>
+			<mode>
+				Bus Transpole
+			</mode>
+			<ligne>
+				52
+			</ligne>
+			<heureDepart>
+				14h51
+			</heureDepart>
+			<duree unite="min">
+				23
+			</duree>
+			<arretDepart>
+				Seclin - Hôtel de Ville
+			</arretDepart>
+			<direction>
+				Lille - Porte des Postes
+			</direction>
+			<arretArrive>
+				Lille - CHR B Calmette
+			</arretArrive>
+		</etape>
+		<etape correspondanceMinutes="4">
+			<mode>
+				Metro Transpole 
+			</mode>
+			<ligne>
+				1
+			</ligne>
+			<heureDepart>
+				15h18
+			</heureDepart>
+			<duree unite="min">
+				3 
+			</duree>
+			<arretDepart>
+				Lille - CHR B Calmette
+			</arretDepart>
+			<direction>
+				Villeneuve d'Ascq - 4 Cantons Grand Stade
+			</direction>
+			<arretArrive>
+				Lille - Porte des Postes
+			</arretArrive>
+		</etape>
+		<etape correspondanceMinutes="6">
+			<mode>
+				Metro Transpole 
+			</mode>
+			<ligne>
+				2
+			</ligne>
+			<heureDepart>
+				15h27
+			</heureDepart>
+			<duree unite="min">
+				25
+			</duree>
+			<arretDepart>
+				Lille - Porte des Postes
+			</arretDepart>
+			<direction>
+				Tourcoing - CHR Dron
+			</direction>
+			<arretArrive>
+				Roubaix - Epeule Montesqieu
+			</arretArrive>
+		</etape>
+		<etape correspondanceMinutes="4">
+			<mode>
+				Bus Transpole 
+			</mode>
+			<ligne>
+				25
+			</ligne>
+			<heureDepart>
+				15h56
+			</heureDepart>
+			<duree unite="min">
+				9
+			</duree>
+			<arretDepart>
+				Roubaix - Epeule Montesqieu
+			</arretDepart>
+			<direction>
+				Roubaix - fraternité
+			</direction>
+			<arretArrive>
+				Roubaix - Avenue Motte
+			</arretArrive>
+		</etape>
+	</detail>
+</itineraire>

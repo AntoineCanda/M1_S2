@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artistes xmlns="http://labd/art">
+   <artiste>
+      <nom>Picasso</nom>
+      <prenom>Pablo</prenom>
+      <nbOeuvres>1</nbOeuvres>
+   </artiste>
+   <artiste>
+      <nom>Miro</nom>
+      <prenom>Joan</prenom>
+      <nbOeuvres>3</nbOeuvres>
+   </artiste>
+   <artiste>
+      <nom>Magritte</nom>
+      <prenom>René</prenom>
+      <nbOeuvres>1</nbOeuvres>
+   </artiste>
+   <artiste>
+      <nom>Blake</nom>
+      <prenom>Peter</prenom>
+      <nbOeuvres>0</nbOeuvres>
+   </artiste>
+   <artiste>
+      <nom>Johns</nom>
+      <prenom>Jasper</prenom>
+      <nbOeuvres>1</nbOeuvres>
+   </artiste>
+</artistes>

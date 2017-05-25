@@ -1,0 +1,22 @@
+CANDA Antoine et Su Hui
+
+Pour lancer : java -jar car.jar 
+Il faut lancer un serveur ftp avant. 
+Par defaut j'ai utilisé celui d'apache. 
+La commande est : bin/ftpd.sh res/conf/ftpd-typical.xml
+
+Pour se connecter : http://127.0.0.1:8080/rest/tp2/ftp/
+
+Le tp n'est pas complétement fini. 
+Il reste de nombreux points de détail qui peuvent être améliorer notamment sur l'ajout de fichier ou il faut rafraichir la page.
+Il est possible d'ajouter, supprimmer et renommer des fichiers ou répertoire, de se déplacer dans l'arborescence.
+
+Je n'ai pas eu le temps d'ajouter la dernière partie sur l'authentification HTTP.
+
+Après avoir perdu plus de deux séances à essayer de faire fonctionner Maven j'ai décidé d'abandonner. Pour cette raison il n'y a pas de test car pas le temps de faire.
+
+La partie HTML repose sur l'utilisation de la librairie gagawa de google qui permet de construire facilement l'arbre du fichier html et de personnaliser très simplement le fichier. Je me suis nasé sur plusieurs tutoriels sur le web.
+J'ai trouvé des icones en svg libre.
+
+On a utilisé pour la partie html le design pattern singleton. 
+

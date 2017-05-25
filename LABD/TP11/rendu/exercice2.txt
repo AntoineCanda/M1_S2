@@ -1,0 +1,74 @@
+Exercice 2 TP 11 LABD
+
+Q1 : Requête donnant le nom des connaissances directes de James Bond avec éventuellement leur homepage si elle existe :
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX jb: <http://bond007.org/RDF/mes_donnees.rdf#>
+SELECT ?nom ?homePage WHERE 
+{
+	jb:me foaf:knows ?connaissance
+	?connaissance foaf:name ?nom
+	OPTIONAL{ ?connaissance foaf:homepage ?homePage}
+}
+
+Q2 : Requête donnant le nom des connaissances directes de James Bond avec les pages leurs étant liées.
+
+Les pages peuvent être des homepage, des workplaceHomepage ou interest. Il suffit d'ajouter ces deux derniers dans le filter: 
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX jb: <http://bond007.org/RDF/mes_donnees.rdf#>
+SELECT ?nom ?homePage WHERE 
+{
+	jb:me foaf:knows ?connaissance
+	?connaissance foaf:name ?nom
+	OPTIONAL{ ?connaissance foaf:homepage | foaf:workplaceHomepage | foaf:interest ?homePage}
+}
+
+Q3 : Requête permettant d'avoir le nom des connaissances étendues de James Bond à l'exception de lui même.
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX jb: <http://bond007.org/RDF/mes_donnees.rdf#>
+SELECT ?nom WHERE 
+{
+jb:me foaf:knows+ ?personne 
+?personne foaf:name ?nom
+FILTER(?nom != "James Bond")
+}
+
+Q4 : Requête donnant les connaissances directes de James Bond ne possédant pas de téléphone
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX jb: <http://bond007.org/RDF/mes_donnees.rdf#>
+SELECT ?personne WHERE 
+{
+jb:me foaf:knows ?personne 
+FILTER NOT EXISTS{?personne foaf:phone ?hasPhone}
+}
+
+Q5 : Requête donnant toutes les personnes et le nombre de connaissances directes qu'elles possédent:
+
+Utilisation de count() et group by sont une méthode simple de procéder : 
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX jb: <http://bond007.org/RDF/mes_donnees.rdf#>
+SELECT ?personne (COUNT(?personne) as ?nbConnaissance) WHERE 
+{
+OPTIONAL{?personne foaf:knows ?connaissance}
+}
+GROUP BY ?personne
+
+Mais incomplète car on a uniquement les personnes ayant au moins une connaissance de présent : il manque ceux qui n'ont pas de connaissances directes. 
+
+On peut les obtenir d'ailleurs avec la requête suivante :
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX jb: <http://bond007.org/RDF/mes_donnees.rdf#>
+SELECT ?personne WHERE 
+{
+	?personne rdf:type foaf:Person
+	FILTER NOT EXISTS {
+		?personne foaf:knows ?connaissance
+	}
+}
+
+Je n'ai pas réussi à faire l'union entre les deux ni à lié une variable ?nbConnaissance avec 0 pour ces derniers et en faire une unique requête répondant à la question. 

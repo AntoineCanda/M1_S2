@@ -1,0 +1,26 @@
+Exercice 1 TP3
+
+1 : une heure comprise entre 2h30 du matin et 16h50
+
+On peut representer par une heure comprise entre deux bornes minimale et maximale.
+On peut par exemple utiliser le type primitif "xsd:time" avec xsd:minInclusive valant "02:30:00" et xsd:maxInclusive valant "16:50:00".
+
+2 : un nombre réel en précision simple, supérieur ou égal à -3476.4 et strictement inférieur à 5.
+
+Un nombre réel en précision simple corresppond au type "xsd:float". 
+On utilisera un xsd:minInclusive valant "-3476.4" et un maxExclusive valant "5".
+
+3 : une chaine de 4 caractères.
+
+On peut representer une chaine de caractères par le type xsd:string avec une taille xsd:length valant "4".
+
+4 : une chaine de caractères qui ne peut être égale qu'à "jpg", "gif" ou "png".
+
+La chaine de caractères est representé par le type "xsd:string" et les valeurs possibles sont des enumerations. 
+
+5 : un type de numero ISBN.
+
+Il peut être représenté par un positiveInteger ou un unsignedLong sur lequel on applique un pattern valant "[0-9]{13}" imposant une taille de 13 chiffres ayant une valeur comprise entre 0 et 9 chacun.
+
+
+Voir les fichiers exo1.xsd et exo1.xml pour des tests. 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New XSD document created with EditiX XML Editor (http://www.editix.com) at Sat Feb 11 23:17:29 CET 2017 -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:b="http://www.b.com"
+targetNamespace="http://www.b.com"
+elementFormDefault="qualified">
+
+<xs:simpleType name="typeB">
+		<xs:restriction base="xs:string"/>
+</xs:simpleType>
+<xs:element name="B" type="b:typeB"/>
+	
+
+
+</xs:schema>

@@ -1,0 +1,15 @@
+1. Les producteurs de fruits.
+
+//fruit/producteur/text()
+
+2. Les légumes produits en Espagne.
+
+//legume[origine="Espagne"]
+
+3. les origines des clémentines de calibre 1 issues de l’agriculture biologique. 
+
+//fruit[@type="clementine" and @calibre="1" and bio]/(origine)
+
+4. les producteurs bretons.
+
+//producteur[following-sibling::origine[@region="Bretagne"]]

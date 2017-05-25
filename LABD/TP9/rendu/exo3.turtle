@@ -1,0 +1,28 @@
+@prefix labd:<http://www.labd.org/2017#> .
+@prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+
+<http://www.labd.org/2017/Container> labd:liste [
+a rdf:Seq;
+rdf:_1 "a";
+rdf:_2 "b";
+rdf:_3 "c";
+rdf:_4 "d"
+].
+
+
+<http://www.labd.org/2017/Collection> labd:liste
+[rdf:first "a";
+    rdf:rest [ 
+		rdf:first "b";
+		rdf:rest[
+			rdf:first "c";
+			rdf:rest[
+				rdf:first "d";
+				rdf:rest  rdf:nil
+			]
+		]
+	]
+].
+     
+        
+    

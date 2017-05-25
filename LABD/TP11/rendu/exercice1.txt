@@ -1,0 +1,156 @@
+Exercice 1 TP 11 LABD
+
+Q1 : La requête suivante permet d'obtenir la liste des classes:
+
+SELECT ?classes WHERE
+{
+	?classes rdf:type rdfs:Class
+}
+
+Q2 : La requête suivante permet d'obtenir la liste des propriétés associés avec un domaine de type Sport
+
+PREFIX sport: <http://www.labd.org/2015/sport/schema#>
+SELECT ?property  WHERE
+{
+	?property rdfs:domain sport:Sport
+}
+
+
+Q3 : La requete suivante permet d'obtenir les propriétés dont le sujet est une instance de Sport  
+
+PREFIX sport: <http://www.labd.org/2015/sport/schema#>
+SELECT DISTINCT ?property  WHERE
+{
+	?sujet rdfs:range sport:Sport
+}
+
+ 
+Q4 : Requete permettant d'obtenir les ressources ayant le mot sport en commentaire
+
+1 : si on est sensible à la case (sport)
+PREFIX sport: <http://www.labd.org/2015/sport/schema#>
+SELECT DISTINCT ?ressource ?comment  WHERE
+{
+	?ressource rdfs:comment ?comment
+	FILTER regex(str(?comment), "sport")
+}
+
+2 : si on ne l'est pas et qu'on accepte le mot Sport :
+
+PREFIX sport: <http://www.labd.org/2015/sport/schema#>
+SELECT DISTINCT ?ressource ?comment  WHERE
+{
+	?ressource rdfs:comment ?comment
+	FILTER regex(str(?comment), "[Ss]port")
+}
+
+Q5 : Requete permettant d'obtenir les sports ne nécessitant pas de materiel :
+
+PREFIX sport: <http://www.labd.org/2015/sport/schema#>
+SELECT DISTINCT ?sport  WHERE
+{
+	?sport rdf:type sport:Sport
+	FILTER NOT EXISTS {?sport sport:utiliseMateriel ?mat}
+}
+
+Q6 : Requete permettant d'obtenir les personnes pratiquants plus d'un sport:
+
+ - sans group by :
+
+Une personne pratiquant plus d'un sport en pratique au moins deux, il suffit de regarder qui pratique au moins deux sports différents.
+
+PREFIX sport: <http://www.labd.org/2015/sport/schema#>
+SELECT DISTINCT ?personne  WHERE
+{
+	?personne sport:pratique ?sport1
+	?personne sport:pratique ?sport2
+	FILTER (?sport1 != ?sport2)
+}
+ 
+ - avec group by :
+ 
+On va compter avec COUNT() le nombre de sport pratiqué par une personne et on group celle ayant plus d'un tout simplement :
+
+PREFIX sport: <http://www.labd.org/2015/sport/schema#>
+SELECT  ?personne  WHERE
+{
+	?personne sport:pratique ?sport
+}
+GROUP BY ?personne
+HAVING(COUNT(?sport)>1)
+
+Les deux requêtes donnent le même résultat. 
+
+Q7 : Requete permettant d'obtenir les personnes ne pratiquant qu'un sport. 
+
+ - avec group by :
+ 
+ Même requête que pour les personnes pratiquant plus d'un sport sauf la condition dans le count qui passera à = 1.
+ 
+PREFIX sport: <http://www.labd.org/2015/sport/schema#>
+SELECT  ?personne  WHERE
+{
+	?personne sport:pratique ?sport
+}
+GROUP BY ?personne
+HAVING(COUNT(?sport) = 1)
+
+- sans group by :
+
+Elle demande plus de réflexion mais reste finalement assez simple : les personnes pratiquant un seul sport sont les personnes qui pratiquent un sport moins celle en pratiquant au moins deux. 
+On peut donc utiliser un minus contenant plus ou moins la requête sans group by de la question précédente : 
+
+PREFIX sport: <http://www.labd.org/2015/sport/schema#>
+SELECT DISTINCT  ?personne  WHERE
+{
+	?personne sport:pratique ?sport
+	MINUS {
+		?personne sport:pratique ?sport1
+		?personne sport:pratique ?sport2
+		FILTER (?sport1 != ?sport2)
+	}
+}
+
+Q8 : Requete pour obtenir les personnes pratiquant au moins un sport et le nombre de sport pratiqué :
+
+On utilise un group by sur personne qui pratique un sport au moins et un count. 
+
+PREFIX sport: <http://www.labd.org/2015/sport/schema#>
+SELECT DISTINCT  ?personne (COUNT(?sport) as ?nbSport) WHERE
+{
+?personne sport:pratique ?sport
+}
+GROUP BY ?personne
+
+Q9 : Requete pour obtenir les durées d'un match de basket
+
+PREFIX sport: <http://www.labd.org/2015/sport/schema#>
+PREFIX instance: <http://www.labd.org/2015/sport/instance#>
+
+SELECT ?fede WHERE
+{
+	instance:Basket sport:match[sport:duree [ rdfs:member ?fede]]
+}
+ 
+Q10 : Requete pour obtenir la duree d'un match de basket en NBA
+
+On ajoute à la q9 un filtre sur la federation (NBA)
+
+PREFIX sport: <http://www.labd.org/2015/sport/schema#>
+PREFIX instance: <http://www.labd.org/2015/sport/instance#>
+
+SELECT ?fede WHERE
+{
+	instance:Basket sport:match[sport:duree [ rdfs:member ?fede]]
+	FILTER regex(?fede, "NBA")
+}
+
+Q11 : Requete pour obtenir la liste des sports collectifs avec leurs durées :
+
+PREFIX sport: <http://www.labd.org/2015/sport/schema#>
+SELECT ?sport ?duree WHERE
+{
+   ?sport rdf:type sport:SportCollectif
+   ?sport sport:match[sport:duree[rdfs:member? ?duree]]
+   FILTER isLiteral(?duree)
+}

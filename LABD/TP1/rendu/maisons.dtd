@@ -1,0 +1,31 @@
+<!-- DTD created at Mon Jan 23 22:12:52 CET 2017 with EditiX XML Editor (http://www.editix.com). Please insert an encoding attribute header for converting any DTD  -->
+
+<!ELEMENT maisons (maison*)>
+<!ELEMENT maison (RDC, étage)>
+<!ELEMENT RDC (cuisine?, WC?, séjour?, bureau*, garage?)>
+<!ELEMENT étage (terrasse?, chambre*, mirador?, salledeBain*)>
+
+<!ELEMENT cuisine (#PCDATA)>
+<!ELEMENT WC (#PCDATA)>
+<!ELEMENT séjour (#PCDATA)>
+<!ELEMENT bureau (#PCDATA)>
+<!ELEMENT garage EMPTY>
+
+<!ELEMENT terrasse EMPTY>
+<!ELEMENT chambre (#PCDATA | alcove)*>
+<!ELEMENT alcove (#PCDATA)>
+<!ELEMENT mirador (#PCDATA)>
+<!ELEMENT salledeBain (#PCDATA)>
+
+<!ATTLIST maison id CDATA #REQUIRED>
+<!ATTLIST chambre surface-m2 CDATA #IMPLIED>
+<!ATTLIST chambre fenetre CDATA #IMPLIED>
+<!ATTLIST cuisine surface-m2 CDATA #IMPLIED>
+<!ATTLIST séjour surface-m2 CDATA #IMPLIED>
+<!ATTLIST séjour fenetre CDATA #IMPLIED>
+<!ATTLIST bureau surface-m2 CDATA #IMPLIED>
+<!ATTLIST mirador surface-m2 CDATA #IMPLIED>
+<!ATTLIST alcove surface-m2 CDATA #IMPLIED>
+<!ATTLIST salledeBain surface-m2 CDATA #IMPLIED>
+
+

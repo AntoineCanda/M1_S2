@@ -1,0 +1,28 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix sch: <http://www.labd.org/2017/cours/schema#>.
+
+<http://www.labd.org/2015/cours/schema#personne>
+a rdfs:Class ;
+rdfs:comment "Classe Personne".
+
+<http://www.labd.org/2017/cours/schema#prenom>
+a rdfs:Property;
+rdfs:domain <http://www.labd.org/2017/cours/schema#personne>;
+rdfs:range rdf:Literal.
+
+<http://www.labd.org/2017/personne/data#Boby>
+a sch:personne ;
+sch:prenom "Boby" .
+
+<http://www.labd.org/2017/personne/data#Leon>
+a sch:personne ;
+sch:prenom "Leon" .
+
+<http://www.labd.org/2017/personne/data#Boby> sch:pense [
+	a rdf:Statement;
+	rdf:subject <http://www.labd.org/2017/personne/data#Leon>;
+	rdf:predicate sch:atteintPar;
+	rdf:Object  sch:Maladie
+
+].

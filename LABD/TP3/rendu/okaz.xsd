@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New XSD document created with EditiX XML Editor (http://www.editix.com) at Tue Feb 07 17:06:26 CET 2017 -->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	
+	<xsd:element name="marque">
+		<xsd:simpleType>
+	
+		<xsd:restriction base="xsd:string"/>
+		
+</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name="modele">
+		
+<xsd:simpleType>
+		
+	<xsd:restriction base="xsd:string"/>
+		
+</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name="annee">
+		<xsd:simpleType>
+	
+		<xsd:restriction base="xsd:gYear"/>
+	
+	</xsd:simpleType>
+	</xsd:element>
+
+	
+
+	<xsd:element name="item">
+	
+	<xsd:complexType>
+		
+	<xsd:sequence>
+		
+		<xsd:element ref="marque"/>
+		
+		<xsd:element ref="modele"/>
+		
+		<xsd:element ref="annee" minOccurs="0" maxOccurs="1"/>
+		
+	</xsd:sequence>
+	
+		<xsd:attribute name="prix" type="xsd:integer"/>
+	
+	</xsd:complexType>
+
+	</xsd:element>
+
+	
+	
+<xsd:complexType name="typeVente">
+	
+	<xsd:sequence>
+	
+		<xsd:element ref="item" minOccurs="0" maxOccurs="unbounded"/>
+	
+	</xsd:sequence>
+	
+</xsd:complexType>
+
+	
+
+	<xsd:element name="stock">
+
+		<xsd:complexType>
+
+			<xsd:sequence>
+
+				<xsd:element name="occases" type="typeVente"/>
+
+				
+<xsd:element name="neufs" type="typeVente"/>
+
+			</xsd:sequence>
+
+			<xsd:attribute name="nom" type="xsd:string"/>
+
+		</xsd:complexType>
+
+	</xsd:element>
+
+	
+</xsd:schema>

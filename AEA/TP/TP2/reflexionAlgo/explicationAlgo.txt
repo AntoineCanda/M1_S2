@@ -1,0 +1,64 @@
+Pseudo-code de l'algo de détection de pré-microARN :
+- Couper la séquence à analyser en deux moitiés
+- Construire un tableau 2D avec la première moitié de la séquence en largeur et la deuxième moitié en hauteur
+- Initialiser tout le tableau à "U" (= undefined, c'est-à-dire non encore marquée)
+- Initialiser un tableau "chemin" définissant le chemin parcouru pour trouver le pré-microARN
+- Commencer à la case [0][0] (c'est-à-dire regarder la première lettre de la séquence et la dernière)
+- Initialiser les variables :
+	nbMatchsTotal = 0, nbMatchsSucc = 0, mismatchsSucc = false, position1erMismatchSucc = (-1, -1);
+- Pour chaque nouvelle case visitée :
+	ajouter ses coordonnées (ligne,colonne) dans le tableau chemin
+	-> S'il y a un match, mettre un "V" dans la case, et :
+		- si nbMatchsSucc = 0
+			mettre mismatchsSucc à false
+		puis :
+		incrémenter nbMatchsTotal et nbMatchsSucc
+		enregistrer dans la case la valeur de la variable nbMatchsSucc
+		- si la case en diagonale n'est pas encore marquée
+			passer à la case en diagonale
+		- sinon
+			backtrack()
+	-> S'il y a un mismatch, mettre un "X" dans la case et :
+		- si mismatchsSucc == false
+			position1erMismatchSucc = (x,y) actuels
+			mismatchsSucc = true
+		enregistrer dans la case le champ position1erMismatchSucc
+		- si nbMatchsSucc >= 3
+			- si x < position1erMismatchSucc.x + 3 et y < position1erMismatchSucc.y + 3
+				enregistrer dans la case les valeurs des variables nbMatchsSucc
+				passer à la case en diagonale
+			- sinon
+				backtrack()
+		- sinon
+			backtrack()
+	
+fonction backtrack()
+	retourner en arrière jusqu'à la dernière case marquée en "X" (en excluant la case courante) en marquant en rouge les cases revisitées (sauf la case de départ du backtracking) en passant et en retirant leurs coordonnées du tableau chemin
+	en retournant en arrière :
+		- si la case est un "V", décrémenter nbMatchsTotal
+	si la case en dessous n'est pas encore marquée, passer à la case en dessous
+	sinon, passer à la case à droite si elle n'est pas encore marquée
+	sinon, retourner en arrière (en prenant la dernière case du tableau chemin) tant que la case courante est marquée "V"
+	etc.
+	quand on peut s'arrêter :
+	- si la case est un "X"
+		récupérer le champ de position1erMismatchSucc
+	on renvoie les indices ligne, colonne de la case courante, ainsi que la valeur de nbMatchsSucc de la dernière case visitée
+	si, en retournant en arrière, ligne = -1 ou colonne = -1, on peut en conclure qu'aucun pré-microARN n'existe dans cette séquence
+	retourner les indices et la fonction principale gérera son arrêt.
+	
+Gestion de la boucle terminale :
+Si nbMatchsTotal >= 24 ET si on rentre dans la zone "boucle terminale" :
+	Aller jusqu'à la dernière case (coin en bas à droite)
+	Si le nombre de cases "X" traversées > 8
+		nbCasesEnTrop = nbCasesTraversees - 8
+		Aller à la première case "X" de la série
+		Si la ligne de l'avant-dernière case == la ligne de la dernière case
+			Aller à la case située à ligne + nbCasesEnTrop
+		Sinon
+			Aller à la case située à colonne + nbCasesEnTrop
+	(Sinon, on ne fait rien)
+	
+	Renvoyer le résultat (le pré-microARN)
+Sinon
+	Ce n'est pas un pré-microARN

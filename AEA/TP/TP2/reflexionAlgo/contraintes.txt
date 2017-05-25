@@ -1,0 +1,8 @@
+
+taille max séquences : 100 nucleotides
+nombre min appariements : 24 
+appariements possibles : AU / CG / GU
+groupe d'appariements à la suite minimale : 3 
+groupe max d'isolé : 3
+boucle terminale taille max : 8 
+ 

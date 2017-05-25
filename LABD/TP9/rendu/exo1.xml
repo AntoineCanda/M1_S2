@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:ns0="http://www.labd.org/2017#">
+
+  <rdfs:Class rdf:about="http://www.labd.org/2017/voitures/schema#Voiture">
+    <rdfs:comment>La classe représentant une voiture</rdfs:comment>
+  </rdfs:Class>
+
+  <rdfs:Class rdf:about="http://www.labd.org/2017/voitures/schema#Marque">
+    <rdfs:comment>La classe représentant une marque</rdfs:comment>
+  </rdfs:Class>
+
+  <rdfs:Property rdf:about="http://www.labd.org/2017/cours/schema#modele">
+    <rdfs:domain rdf:resource="http://www.labd.org/2017/cours/schema#Voiture"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"/>
+  </rdfs:Property>
+
+  <rdf:Description rdf:about="http://www.labd.org/2017/cours/data#C4">
+    <rdf:type rdf:resource="http://www.labd.org/2017#Voiture"/>
+    <ns0:modele>C4</ns0:modele>
+    <ns0:Marque>
+      <ns0:Marque rdf:about="http://www.labd.org/2017/cours/data#Citroen">
+        <rdf:type rdf:resource="http://www.labd.org/2017#Societe"/>
+        <ns0:dateCreation>1991</ns0:dateCreation>
+      </ns0:Marque>
+    </ns0:Marque>
+
+  </rdf:Description>
+
+  <rdfs:Class rdf:about="http://www.labd.org/2017/cours/schema#Societe">
+    <rdfs:comment>La classe représentant une société</rdfs:comment>
+  </rdfs:Class>
+
+  <rdfs:Property rdf:about="http://www.labd.org/2017/cours/data#dateCreation">
+    <rdfs:domain rdf:resource="http://www.labd.org/2017/cours/schema#Societe"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"/>
+  </rdfs:Property>
+
+</rdf:RDF>

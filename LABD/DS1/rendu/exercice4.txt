@@ -1,0 +1,49 @@
+Exercice 4 TP DS LABD
+
+Question 11 :
+
+1 : count(//liaison[/@de="13592"]/text()) : 0 
+2 : count(//liaison[@de="13592"]/text()) : 7
+3 : count(//liaison[//@de="13592"]/text()) : 21
+
+Question 12 :
+
+1 : Le nombre de gares
+
+count(//gare/text())
+
+2 : La valeur de l’attribut id de la gare "Lille Europe".
+
+//gare[text() = "Lille Europe"]/@id
+
+3 : Le nom de la dernière gare de la liste des gares.
+
+//gare[last()]/text()
+
+4 : Le nom de la gare qui a le numéro d’id maximal. Pour l’exemple, il s’agit de "TGV Roissy Charles-De-Gaulle".
+
+//gare[@id = max(//gare/@id)]/text()
+
+5 : Le nom de toutes les gares destination d’une liaison partant de la gare de nom "Lille Europe".
+
+J'ai découpé en différentes étapes cette requête 
+
+//gare[text() = "Lille Europe"]/@id => id gare Lille 
+
+//liaison[@de=(//gare[text() = "Lille Europe"]/@id)]/@a => les id des gares d'arrivees depuis la gare de lille 
+
+Réponse à la question : 
+
+//gare[@id = (//liaison[@de=(//gare[text() = "Lille Europe"]/@id)]/@a)]/text()
+
+6 : Le nom de toutes les gares qu’on peut atteindre avec exactement une correspondance à partir de la gare de nom "Lille Europe". Une correspondance est un couple d’éléments liaison (l1,l2) tel que la valeur de l’attribut a de l1 soit égal à la valeur de l’attribut de de l2. Sur l’exemple, cette requête devrait retourner"TGV Roissy Charles-De-Gaulle" et "Valence TGV".
+
+J'ai repris la réponse de la question précédente : 
+
+//liaison[@de=(//gare[text() = "Lille Europe"]/@id)]/@a => les id des gares d'arrivees depuis la gare de lille 
+
+//liaison[@de=(//liaison[@de=(//gare[text() = "Lille Europe"]/@id)]/@a)]/@a => les id des gares où on arrive en partance d'une gare qui est le point d'arrivée d'un trajet depuis Lille Europe 
+
+Requête finale : 
+
+distinct-values(//gare[@id = (//liaison[@de=(//liaison[@de=(//gare[text() = "Lille Europe"]/@id)]/@a)]/@a)]/text())

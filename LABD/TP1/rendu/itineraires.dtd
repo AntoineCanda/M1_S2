@@ -1,0 +1,27 @@
+<!-- DTD created at Mon Jan 23 19:07:58 CET 2017 with EditiX XML Editor (http://www.editix.com). Please insert an encoding attribute header for converting any DTD  -->
+<!ELEMENT  itineraire (information, detail)>
+
+<!ELEMENT  information (depart, arrivee, date, heure, modeTrajet, preference, marche, dureeTrajet)>
+<!ELEMENT  detail (etape+)>
+
+<!ELEMENT depart (#PCDATA)>
+<!ELEMENT arrivee (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT heure (#PCDATA)>
+<!ELEMENT modeTrajet (#PCDATA)>
+<!ELEMENT preference (#PCDATA)>
+<!ELEMENT marche (#PCDATA)>
+<!ELEMENT dureeTrajet (#PCDATA)>
+<!ATTLIST marche vitesse CDATA "normale">
+
+<!ELEMENT etape (mode,ligne?,heureDepart?,duree,arretDepart,direction?,arretArrive)>
+<!ELEMENT mode (#PCDATA)>
+<!ELEMENT ligne (#PCDATA)>
+<!ELEMENT heureDepart (#PCDATA)>
+<!ELEMENT duree (#PCDATA)>
+<!ELEMENT arretDepart (#PCDATA)>
+<!ELEMENT direction (#PCDATA)>
+<!ELEMENT arretArrive (#PCDATA)>
+<!ATTLIST etape correspondanceMinutes CDATA "0">
+<!ATTLIST duree unite CDATA "min">
+

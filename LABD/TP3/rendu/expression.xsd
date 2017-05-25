@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New XSD document created with EditiX XML Editor (http://www.editix.com) at Tue Feb 07 18:34:36 CET 2017 -->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+
+	<xsd:element name="cons">
+
+		<xsd:simpleType>
+
+			<xsd:restriction base="xsd:integer"/>
+
+		</xsd:simpleType>
+
+	</xsd:element>
+
+	
+
+
+	<xsd:simpleType name="operation">
+
+		<xsd:restriction base="xsd:string">
+
+			<xsd:enumeration value="+"/>
+
+			<xsd:enumeration value="*"/>
+
+			<xsd:enumeration value="-"/>
+
+			<xsd:enumeration value="/"/>
+
+		</xsd:restriction>
+
+	</xsd:simpleType>
+
+	
+
+	<xsd:element name="var">
+
+		<xsd:simpleType>
+
+			<xsd:restriction base="xsd:string"/>
+
+		</xsd:simpleType>
+
+	</xsd:element>
+
+	
+
+
+	
+
+	<xsd:group name="OpGroupe">
+
+		<xsd:choice>
+
+			<xsd:sequence>
+
+			
+	<xsd:element ref="op"/>
+
+			
+	<xsd:choice>
+
+			
+		<xsd:element ref="cons"/>
+
+			
+		<xsd:element ref="var"/>
+
+			
+	</xsd:choice>
+
+			</xsd:sequence>
+			
+<xsd:sequence>
+			
+
+	<xsd:choice>
+
+			
+		<xsd:element ref="cons"/>
+
+			
+		<xsd:element ref="var"/>
+
+			
+	</xsd:choice>
+
+			
+	<xsd:choice>
+
+			
+	
+	<xsd:element ref="op"/>
+
+			
+		<xsd:element ref="cons"/>
+
+			
+		<xsd:element ref="var"/>
+
+			
+	</xsd:choice>
+
+			</xsd:sequence>
+
+		</xsd:choice>
+
+	</xsd:group>
+
+	
+
+	<xsd:element name="op">
+
+		<xsd:complexType mixed="true">
+
+			<xsd:group ref="OpGroupe"/>
+
+			<xsd:attribute name="val" type="operation"></xsd:attribute>
+
+		</xsd:complexType>
+
+	</xsd:element>
+
+	
+
+	<xsd:element name="expr">
+
+		<xsd:complexType>
+
+			<xsd:sequence>
+
+				<xsd:element ref="op"/>
+
+			</xsd:sequence>
+
+		</xsd:complexType>
+
+	</xsd:element>
+</xsd:schema>

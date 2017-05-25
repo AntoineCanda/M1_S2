@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<expr xsi:schemaLocation="http://www.expression.org expression.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.expression.org">
+  <op val="-">
+    <op val="+">
+      <op val="*">
+        <cons>55</cons>
+        <cons>90</cons>
+      </op>
+      <op val="+">
+        <var>G</var>
+        <cons>-9</cons>
+      </op>
+    </op>
+    <op val="+">
+      <op val="*">
+        <op val="-">
+          <cons>-44</cons>
+          <var>U</var>
+        </op>
+        <op val="*">
+          <op val="+">
+            <cons>1</cons>
+            <cons>29</cons>
+          </op>
+          <op val="-">
+            <cons>-35</cons>
+            <var>K</var>
+          </op>
+        </op>
+      </op>
+      <op val="-">
+        <op val="-">
+          <cons>-126</cons>
+          <cons>-63</cons>
+        </op>
+        <op val="-">
+          <cons>-16</cons>
+          <cons>-84</cons>
+        </op>
+      </op>
+    </op>
+  </op>
+</expr>

@@ -1,0 +1,107 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix labd: <http://www.labd.org/2017/sport#> . 
+
+<http://www.labd.org/2017/cours/schema#nomSport>
+	a rdfs:Property;
+	rdfs:domain <http://www.labd.org/2017/cours/schema#SportCollectif>;
+	rdfs:range rdf:Literal .
+
+<http://www.labd.org/2017/cours/data#Basket>
+	a labd:SportCollectif ;
+	labd:nomSport "BasketBall" .
+
+<http://www.labd.org/2017/cours/data#Football>
+	a labd:SportCollectif ;
+	labd:nomSport "Football" .
+
+<http://www.labd.org/2017/cours/schema#nombreEquipe>
+	a rdfs:Property;
+	rdfs:domain <http://www.labd.org/2017/cours/schema#Match>;
+	rdfs:range rdf:Literal .
+	
+<http://www.labd.org/2017/cours/schema#lieuRencontre>
+	a rdfs:Property;
+	rdfs:domain <http://www.labd.org/2017/cours/schema#Match>;
+	rdfs:range rdf:Literal .
+
+<http://www.labd.org/2017/cours/schema#dureeMatch>
+	a rdfs:Property;
+	rdfs:domain <http://www.labd.org/2017/cours/schema#Match>;
+	rdfs:range rdf:Literal .
+
+<http://www.labd.org/2017/cours/schema#nombreJoueursParEquipe>
+	a rdfs:Property;
+	rdfs:domain <http://www.labd.org/2017/cours/schema#Match>;
+	rdfs:range rdf:Literal .
+
+<http://www.labd.org/2017/cours/schema#nombrePeriodeJeu>
+	a rdfs:Property;
+	rdfs:domain <http://www.labd.org/2017/cours/schema#Match>;
+	rdfs:range rdf:Literal .
+
+<http://www.labd.org/2017/cours/schema#dureePeriodeJeu>
+	a rdfs:Property;
+	rdfs:domain <http://www.labd.org/2017/cours/schema#Match>;
+	rdfs:range rdf:Literal .
+
+<http://www.labd.org/2017/cours/schema#regles>
+	a rdfs:Property;
+	rdfs:domain <http://www.labd.org/2017/cours/schema#MatchDeBasket>;
+	rdfs:range rdf:Literal .
+
+<http://www.labd.org/2017/cours/schema#nombreRemplacantsMin>
+	a rdfs:Property;
+	rdfs:domain <http://www.labd.org/2017/cours/schema#MatchDeBasket>;
+	rdfs:range rdf:Literal .
+
+<http://www.labd.org/2017/cours/schema#nombreRemplacantsMax>
+	a rdfs:Property;
+	rdfs:domain <http://www.labd.org/2017/cours/schema#MatchDeBasket>;
+	rdfs:range rdf:Literal .
+
+<http://www.labd.org/2017/sport/schema#MatchDeFoot>
+	labd:nombreEquipe "2";
+  	labd:lieuRencontre "stade" ;
+  	labd:dureeMatch "90 minutes" ;
+  	labd:nombrePeriodeJeu "2" ;
+  	labd:dureePeriodeJeu "45 minutes" ;
+  	labd:nombreJoueursParEquipe "11" .
+
+<http://www.labd.org/2017/sport/schema#MatchDeBasket>
+	labd:nombreEquipe "2";
+  	labd:lieuRencontre "terrain" ;
+  	labd:dureeMatch "40 minutes" ;
+	labd:nombrePeriodeJeu "4";
+	labd:dureePeriodeJeu "10 minutes";
+  	labd:regles "FIBA" ;
+  	labd:nombreJoueursParEquipe "5" ;
+	labd:nombreDeRemplacantsMinimum "5" ;
+    labd:nombreDeRemplacantsMaximum "7" .
+
+<http://www.labd.org/2015/sport/schema#MatchDeBasket>
+	labd:nombreEquipe "2";
+  	labd:lieu "terrain" ;
+  	labd:tempsDuMatch "48 minutes" ;
+	labd:nombrePeriodeJeu "4";
+	labd:dureePeriodeJeu "12 minutes";
+  	labd:regles "NBA" ;
+  	labd:nombreDeJoueursParEquipe "5" ;
+  	labd:nombreDeRemplacantsMinimum "5" ;
+    labd:nombreDeRemplacantsMaximum "7" .
+
+
+<http://www.labd.org/2017/sport/schema#Joueur>
+	a rdfs:Class .
+
+<http://www.labd.org/2017/sport/schema#JoueurDeFoot>
+	rdfs:subClassOf rdfs:Joueur .
+
+<http://www.labd.org/2017/sport/schema#JoueurDeBasket>
+	rdfs:subClassOf rdfs:Joueur .
+
+<http://www.labd.org/2017/sport/schema#Sport>
+	a rdfs:Class .
+
+<http://www.labd.org/2017/sport/schema#SportCollectif>
+	rdfs:subClassOf rdfs:Sport .

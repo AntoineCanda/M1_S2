@@ -1,0 +1,64 @@
+
+Exercice 3 TP1
+
+Document a1.xml avec le dtd1 est valide.
+Si on regarde les règles imposés par le DTD, le noeud A doit avoir en fils 1 ou plusieurs noeuds B ou D et un noeud F ce qui est le cas ici.
+Un noeud B peut avoir 0 ou plusieurs noeuds C, dans le document xml, le noeud B possède deux noeuds C. Il n'y a pas de noeud D. 
+Les noeuds C et F peuvent avoir n'importe quelles données (#PCDATA) et sont valide. Le document est donc à priori valide. 
+
+La validation avec editix valide le document.
+
+Document a1.xml avec le dtd2 n'est pas valide.
+Les différence entre le dtd1 et le dtd2 est dans la regle de l'element A la presence du ? au niveau du F qui indique qu'il y a 0 ou 1 noeud fils F.
+Le dit noeud est présent donc ce n'est pas cette partie qui pose problème.
+C'est la seconde différence qui invalide car elle impose la présence d'au moins un noeud B puis un noeud D (avec éventuellement d'autres noeuds B puis D...) et en dernier le noeud F ou pas.
+Or il n'y a pas de noeud D donc le document n'est pas valide. 
+
+La validation avec editix retourne une erreur. 
+
+Document a1.xml avec le dtd3 n'est pas valide.
+La raison est similaire à dtd2 avec l'absence d'un noeud D après le noeud B. 
+
+La validation avec editix retourne bien une erreur.
+
+Document a2.xml avec le dtd1 est valide.
+
+Le noeud A a bien au moins un noeud B ou un noeud D puis un noeud F.
+Le noeud B a bien ou plusieurs noeuds C qui ont une donnée texte, le noeud D a bien 0 ou plusieurs noeuds F avec des données textes et le noeud F fils de A également.
+
+La validation avec editix valide le document.
+
+Document a2.xml avec le dtd2 est valide.
+Si on regarde les règles imposés par le DTD, le noeud A doit avoir en fils une ou plusieurs fois les noeuds B et D ordonnés de cette façon et 0 ou 1 noeud F après.
+C'est le cas ici avec un noeud B puis un noeud D et enfin un noeud F. 
+Un noeud B peut avoir zéro ou plusieurs noeuds fils C et un noeud D zéro ou plusieurs noeuds fils F. Ici, c'est bien le cas.
+Enfin un noeud C ou F peut avoir toute sorte de données (#PCDATA) en fils ce qui est le cas ici. Le document est donc à priori bien valide.
+
+La validation avec editix valide le document.
+
+Document a2.xml avec le dtd3 valide le document.
+Les règles pour B C D et F sont les mêmes. Seule la regle pour A est différente. 
+Cette dernière dit que le noeud A doit avoir au moins un noeud B puis après les noeuds B au moins un noeud D et enfin 0 ou 1 noeud F.
+Avec un noeud B puis un noeud D et un noeud F, la règle est respecté et le document est donc bien valide.
+
+La validation avec editix valide le document.
+
+Document a3.xml avec le dtd1 ne valide pas le document.
+La règle de A impose un noeud F en dernier noeud fils et il n'est pas présent. Il n'est donc pas valide.
+
+La validation avec editix retourne une erreur.
+
+Document a3.xml avec le dtd2 valide le document.
+Les règles des noeuds C et F sont respectés et celle de B et D également.
+La regle de A impose au moins un enchainement de noeuds fils dans l'ordre B puis D au moins une fois. Puis ensuite 0 ou un noeud F.
+Avec les fils suivant: B puis D puis B puis D on a bien deux enchainement respectant l'ordre et 0 fils F donc la regle est valide.
+
+La validation avec editix valide le document. 
+ 
+Document a3.xml avec le dtd3 est non valide.
+Si on regarde les règles imposés par le DTD, le noeud A doit avoir 1 ou plusieurs noeuds fils B puis 1 ou plusieurs noeuds fils D puis 0 ou plusieurs noeuds F.
+Or on a l'ordre suivant dans les noeuds fils de A : noeud B puis noeud D puis noeud B. Or les noeuds B doivent être les un après les autres donc c'est faux. 
+
+La validation avec editix a retourné une erreur. Le reste du document est valide, si on place le deuxième noeud B avant le premier noeud D, le document est valide et editix le confirme. 
+
+

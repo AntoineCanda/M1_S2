@@ -1,0 +1,46 @@
+
+Question 1 :
+
+Dans l'expression : 
+
+//livre[titre="edition"] 
+
+On regarde si il existe un element titre ayant une valeur qui vaut "edition". 
+
+Alors que dans l'expression:
+
+//livre[titre=edition]
+
+On regarde si il existe deux elements titre et edition avec une valeur egale.
+
+Un exemple où les deux expressions sont égale se trouve dans le fichier exo1.xml
+
+
+Question 2 :
+
+La première expression commence par faire la liste de tout les livres et regarde si le dernier livre de la liste est aussi le livre en dernière position.
+
+La seconde expression commence par faire une liste de tout les livres qui ont pour titre labd et ensuite selectionne le dernier livre de cette liste.
+
+La troisieme expression selectionne le dernier livre et regarde si il a pour titre labd. 
+
+Les expressions 1 et 3 auront le même résultat contrairement à l'expression 2.
+
+Un exemple où les expressions auront des résultats différents se trouve dans le fichier exo1-2.xml
+
+
+Question 3 :
+
+La première expression /descendant::livre[1] va retourner le premier element livre de la liste alors que //livre[1] va retourner tous les premiers elements livres rencontrés.
+Ainsi dans le fichier exo1-3.xml avec un enchainement comme :
+
+<livre>
+	<livre>
+	</livre>
+</livre>
+
+on aura les deux elements qui sont retournés car tout les deux premiers de leur liste respective. 
+
+
+
+

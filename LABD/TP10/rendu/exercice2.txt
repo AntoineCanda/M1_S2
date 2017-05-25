@@ -1,0 +1,46 @@
+Exercice 2
+
+Question 1 :
+
+L'espace de nom de l'ontologie est : humans (http://www.inria.fr/2007/09/11/humans.rdfs).
+Il y a deux domains  qui sont Person et Animal. Les co domains sont Animal Person Male et Female.
+
+La propriété age ne possede pas de domaine. 
+Elle peut donc être appliqué à l'ensemble des classes présentes.
+
+Question 2 :
+
+SELECT ?classes WHERE
+{
+	?classes rdf:type rdfs:Class
+}
+
+Question 3 :
+
+SELECT ?classes ?subClasses WHERE
+{
+	?classes rdfs:subClassOf ?subClasses
+}
+
+Question 4 :
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?trad ?def WHERE 
+{
+	humans:shoesize rdfs:label ?trad
+	humans:shoesize rdfs:comment ?def
+	FILTER( lang(?trad) = "fr")
+	FILTER(lang(?def)= "fr")
+}
+
+Question 5 :
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT  ?syn WHERE 
+{
+	humans:Person rdfs:label ?syn
+	FILTER (LANGMATCHES(LANG(?syn), "fr"))
+}
+
+Question 6 :
+

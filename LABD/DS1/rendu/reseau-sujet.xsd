@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+	elementFormDefault="qualified" 
+	targetNamespace="http://www.fil.univ-lille1.fr/bda/2014"
+	xmlns:bda="http://www.fil.univ-lille1.fr/bda/2014"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:simpleType name="typeIdGare">	
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:pattern value="[0-9]{5}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:element name="reseau">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="bda:gares"/>
+				<xsd:element ref="bda:liaisons"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="gares">
+		<xsd:complexType>
+			<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+				<xsd:element ref="bda:gare"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="gare">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="xsd:string">
+					<xsd:attribute name="id" type="bda:typeIdGare"/>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="liaisons">
+		<xsd:complexType>
+			<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+				<xsd:element ref="bda:liaison"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="liaison">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="xsd:positiveInteger">
+					<xsd:attribute name="de" type="bda:typeIdGare"/>
+					<xsd:attribute name="a" type="bda:typeIdGare"/>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

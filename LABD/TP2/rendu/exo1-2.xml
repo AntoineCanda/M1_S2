@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New XML document created with EditiX XML Editor (http://www.editix.com) at Sat Jan 28 17:06:22 CET 2017 -->
+
+<item>
+	<livre titre="labd">
+		Labd pour les nuls
+	</livre>
+	<livre titre="labd">
+		Labd pour les nuls la suite
+	</livre>
+	<livre titre="car">
+		Car pour les nuls
+	</livre>
+	<livre titre="abd">
+		ABD pour les nuls
+	</livre>
+	<livre titre="abd">
+		Algorithmes pour base de donnees
+	</livre>
+</item>

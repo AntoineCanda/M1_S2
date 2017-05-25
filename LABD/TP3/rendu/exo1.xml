@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New XML document created with EditiX XML Editor (http://www.editix.com) at Tue Feb 07 12:53:20 CET 2017 -->
+
+
+<exo1 xsi:noNamespaceSchemaLocation="C:\Users\antoine\Documents\Cours\M1\S2\LABD\LABD\TP3\rendu\exo1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<q1>12:30:00</q1>
+
+<q2>0.0</q2>
+
+<q3>labd</q3>
+
+<q4>jpg</q4>
+
+<q5>1234567891011</q5>
+
+</exo1>

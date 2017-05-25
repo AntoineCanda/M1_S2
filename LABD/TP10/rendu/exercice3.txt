@@ -1,0 +1,80 @@
+Exercice 3 :
+
+Question 1.1 :
+
+Requete pour Animal :
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT ?x WHERE
+{
+?x rdf:type humans:Animal
+}
+
+0 réponses 
+
+Requete pour Person :
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT ?x WHERE
+{
+?x rdf:type humans:Person
+}
+
+7 réponses
+
+Question 1.2 :
+
+La requete pour Person a maintenant 17 réponses et celle pour Animal en a également 17.
+On se rend compte qu'il y a eu l'inclusion des relations entre les classes car Animal inclus Person qui inclus par exemple Man ...
+On a donc une inférence de faite qui augmente le nombre de résultat.
+
+Question 2.1 :
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT *  WHERE
+{
+?m rdf:type humans:Male
+?m humans:hasSpouse ?s
+}
+
+On a une seule réponse et on peut l'expliquer simplement par le fait qu'on a demandé une ressource de Male et non Person et son épouse. On a donc restreint le nombre de résultat de cette façon. 
+
+Question 2.2 :
+
+En ajoutant à Lucas que Karl est son pere, on a Karl et sa femme Catherine qui apparaisse dans les résultats malgré le fait que Karl est une ressource de type Person. En revanche le fait d'avoir ajouter l'information de sa paternité sur Lucas a permis de faire une inférence car c'est une propriété qui est associé à la classe Male. 
+
+Question 3 :
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT * WHERE 
+{ 
+?lecturer rdf:type humans:Lecturer ?lecturer rdf:type ?type
+}
+
+On obtient 7 réponses (2 fois Eve et 5 fois Laura). 
+La différence est leur type qui change. Il y a également plusieurs types qui sont affectés dans la déclaration RDF et il ya des inférences qui sont également faite. 
+
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT * WHERE
+{
+?x rdf:type humans:Person
+?x rdf:type humans:Male
+}
+
+John est présent dans le fichier RDF en tant que Person mais également en tant que pere de Mark.
+Or comme on a dit précédemment, la propriété hasFather permet une inférence vers le type Male. 
+John apparait donc dans les résultats de cette requête (7 résultats).
+
+Question 4 :
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT * WHERE
+{
+?x humans:hasAncestor ?ancetre
+}
+
+La propriété hasAncestor n'est en effet pas présente mais elle est inférée à partir du fichier rdfs où on trouve clairement que la propriété hasParent est une sous propriété de hasAncestor et que hasFather et hasMother sont eux même des sous propriétés de hasParent et donc de hasAncestor. 
+
+C'est de cette façon que l'on obtient les résultats (au nombre de 5) avec cette requete dans l'instance que l'on a.
+

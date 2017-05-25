@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New document created with EditiX at Thu Jan 19 10:48:10 CET 2017 -->
+
+<listePays>
+	<pays>
+		France
+		<capitale>
+			Paris
+		</capitale>
+		<population annee="2007">
+			64102000
+		</population>
+	</pays>
+	<pays>
+		Italie
+		<capitale>
+			Rome
+		</capitale>
+		<population annee="2006">
+			58133509
+		</population>
+	</pays>
+	<pays>
+		Espagne
+		<capitale>
+			Madrid
+		</capitale>
+		<population annee="2006">
+			44708964
+		</population>
+	</pays>
+</listePays>

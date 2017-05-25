@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reseau
+    xsi:schemaLocation="http://www.fil.univ-lille1.fr/bda/2014 reseau-sujet.xsd" 
+	xmlns="http://www.fil.univ-lille1.fr/bda/2014"
+	xmlns:bda = "http://www.fil.univ-lille1.fr/bda/2014"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<gares>
+		<gare id="13592">Aix en Provence TGV</gare>
+		<gare id="25000">Besançon Franche-Comté TGV</gare>
+		<gare id="71210">Le Creusot TGV</gare>
+		<gare id="59777">Lille Europe</gare>
+		<gare id="57420">Lorraine TGV</gare>
+		<gare id="69125">TGV Lyon St Exupéry</gare>
+		<gare id="95716">TGV Roissy Charles-De-Gaulle</gare>
+		<gare id="26958">Valence TGV</gare>
+	</gares>
+	<liaisons>
+		<liaison de="13592" a="25000">450</liaison>
+		<liaison de="13592" a="71210">400</liaison>
+		<liaison de="13592" a="59777">850</liaison>
+		<liaison de="13592" a="57420">600</liaison>
+		<liaison de="13592" a="69125">250</liaison>
+		<liaison de="13592" a="95716">700</liaison>
+		<liaison de="13592" a="26958">200</liaison>
+		<liaison de="25000" a="59777">450</liaison>
+		<liaison de="25000" a="26958">550</liaison>
+		<liaison de="25000" a="69125">200</liaison>
+		<liaison de="71210" a="57420">250</liaison>
+		<liaison de="71210" a="69125">150</liaison>
+		<liaison de="71210" a="95716">350</liaison>
+		<liaison de="71210" a="26958">200</liaison>
+		<liaison de="59777" a="57420">350</liaison>
+		<liaison de="59777" a="69125">600</liaison>
+		<liaison de="59777" a="95716">150</liaison>
+		<liaison de="57420" a="26958">450</liaison>
+		<liaison de="69125" a="95716">450</liaison>
+		<liaison de="69125" a="26958">100</liaison>
+		<liaison de="95716" a="26958">550</liaison>
+	</liaisons>
+</reseau>

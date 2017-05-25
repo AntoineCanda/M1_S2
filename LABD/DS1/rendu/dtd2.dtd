@@ -1,0 +1,10 @@
+<!-- DTD created at Sat Feb 18 11:41:12 CET 2017 with EditiX XML Editor (http://www.editix.com). Please insert an encoding attribute header for converting any DTD  -->
+
+
+<!ELEMENT A (B, D*,F)>
+
+<!ELEMENT B (C) >
+
+<!ELEMENT D (F*) >
+<!ELEMENT  C (#PCDATA)>
+<!ELEMENT  F (#PCDATA)>

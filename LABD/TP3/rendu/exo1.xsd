@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New XSD document created with EditiX XML Editor (http://www.editix.com) at Tue Feb 07 12:42:51 CET 2017 -->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name="exo1">
+
+		<xsd:complexType>
+
+			<xsd:sequence>
+
+				<xsd:element name="q1" type="q1"/>
+
+				
+<xsd:element name="q2" type="q2"/>
+
+				<xsd:element name="q3" type="q3"/>
+
+				<xsd:element name="q4" type="q4"/>
+
+				
+<xsd:element name="q5" type="q5"/>
+
+			</xsd:sequence>
+
+		</xsd:complexType>	
+
+	</xsd:element>
+
+	<xsd:simpleType name="q1">
+
+		<xsd:restriction base="xsd:time">
+
+			<xsd:minInclusive value="02:30:00"/>
+
+			<xsd:maxInclusive value="16:50:00"/>
+
+		</xsd:restriction>
+
+	</xsd:simpleType>
+
+	<xsd:simpleType name="q2">
+
+		<xsd:restriction base="xsd:float">
+
+			<xsd:minInclusive value="-3476.4"/>
+
+			<xsd:maxExclusive value="5"/>
+
+		</xsd:restriction>
+
+	</xsd:simpleType>
+
+	<xsd:simpleType name="q3">
+
+		<xsd:restriction base="xsd:string">
+
+			<xsd:length value="4"/>
+
+		</xsd:restriction>
+
+	</xsd:simpleType>
+
+	<xsd:simpleType name="q4">
+
+		<xsd:restriction base="xsd:string">
+
+			<xsd:enumeration value="jpg"/>
+
+			<xsd:enumeration value="gif"/>
+
+			<xsd:enumeration value="png"/>
+
+		</xsd:restriction>
+
+	</xsd:simpleType>
+
+	<xsd:simpleType name="q5">
+
+		<xsd:restriction base="xsd:positiveInteger">
+
+			<xsd:pattern value="[0-9]{13}"/>
+
+		</xsd:restriction>
+
+	</xsd:simpleType>
+</xsd:schema>

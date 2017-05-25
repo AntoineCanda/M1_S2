@@ -1,0 +1,22 @@
+Exercice 4
+
+Triplet :
+
+1 : Personne est de type Class
+2 : Stagiaire est de type Class
+3 : Stagiaire est une sous classe de Personne
+4 : Tuteur est de type Class
+5 : Tuteur est une sous classe de Personne
+6 : encadre est de type Property
+7 : encadre a pour sujet une instance de Tuteur
+8 : encadre est une sous proprieté de http://xmlns.com/foaf/0.1/knows 
+9 : encadre a pour objet une instance de Stagiaire
+10 : Ali encadre Louis
+
+Triplets que l'on peut inférer
+
+1 : Ali est un Tuteur
+2 : Louis est un Stagiaire
+3 : Ali est une Personne
+4 : Louis est une Personne
+5 : Ali knows Louis 

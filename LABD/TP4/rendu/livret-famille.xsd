@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- New XSD document created with EditiX XML Editor (http://www.editix.com) at Sun Feb 12 23:03:14 CET 2017 -->
+
+<xs:schema 
+elementFormDefault="qualified"
+attributeFormDefault="unqualified"
+targetNamespace="http://www.fil.univ-lille1.fr/labd"
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:insee="http://xml.insee.fr/schema"
+xmlns="http://www.fil.univ-lille1.fr/labd"
+>
+
+
+	<xs:import  namespace="http://xml.insee.fr/schema" schemaLocation="individu.xsd"/>
+
+	
+		<xs:element name="mere" type="insee:IndividuType"/>
+		<xs:element name="pere" type="insee:IndividuType"/>
+		
+		<xs:complexType name="parentType">
+			<xs:choice>
+				<xs:element ref="pere" />
+				<xs:element ref="mere" />
+			</xs:choice>
+		</xs:complexType>
+		
+		<xs:complexType name="parentsType">
+			<xs:sequence>
+				<xs:element name="parent1" type="parentType"/>
+				<xs:element name="parent2" type="parentType" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+		</xs:complexType>
+
+
+		<xs:complexType name="enfantsType">
+			<xs:sequence>
+				<xs:element name="enfant" minOccurs="0" maxOccurs="70"></xs:element>
+			</xs:sequence>
+		
+
+		</xs:complexType>
+
+		
+
+		<xs:complexType name="mariageType">
+
+			<xs:sequence>
+
+				<xs:element name="lieu" type="insee:LieuType"/>
+
+				<xs:element name="date" type="insee:DateSoupleType"/>
+
+			</xs:sequence>
+
+		</xs:complexType>
+
+		
+
+		<xs:element name="LivretFamille">
+
+			<xs:complexType>
+
+				<xs:sequence>
+
+					<xs:element name="parents" type="parentsType"/>
+
+					<xs:element name="mariage" type="mariageType"/>
+
+					<xs:element name="enfants" type="enfantsType"/>
+
+				</xs:sequence>
+
+			</xs:complexType>
+
+		</xs:element>
+	
+</xs:schema>

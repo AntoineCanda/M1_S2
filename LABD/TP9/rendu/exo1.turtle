@@ -1,0 +1,37 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix labd: <http://www.labd.org/2017#> . 
+
+<http://www.labd.org/2017/voitures/schema#Voiture>
+  a rdfs:Class ;
+  rdfs:comment "La classe représentant une voiture" .
+
+<http://www.labd.org/2017/voitures/schema#Marque>
+  a rdfs:Class ;
+  rdfs:comment "La classe représentant une marque" .
+
+<http://www.labd.org/2017/cours/schema#modele>
+  a rdfs:Property;
+  rdfs:domain <http://www.labd.org/2017/cours/schema#Voiture>;
+  rdfs:range rdf:Literal .
+
+<http://www.labd.org/2017/cours/data#C4>
+	a labd:Voiture ;
+	labd:modele "C4" ;
+	labd:Marque <http://www.labd.org/2017/cours/data#Citroen> .
+
+<http://www.labd.org/2017/cours/data#Citroen>
+	a labd:Marque .
+	
+<http://www.labd.org/2017/cours/schema#Societe>
+  a rdfs:Class ;
+  rdfs:comment "La classe représentant une société" .
+
+<http://www.labd.org/2017/cours/data#dateCreation>
+  a rdfs:Property;
+  rdfs:domain <http://www.labd.org/2017/cours/schema#Societe>;
+  rdfs:range rdf:Literal .
+
+<http://www.labd.org/2017/cours/data#Citroen>
+	a labd:Societe ;
+	labd:dateCreation "1991" .

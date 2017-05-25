@@ -1,0 +1,230 @@
+Exercice 1
+
+Question 1 : 
+
+Cela renvoie tout les éléments x de type t et les affiche avec le type associe. 
+
+On obtient 33 réponses avec cette requête. 
+La seule raison pouvant expliquer le nombre de résultats est qu'il y a eu une inférence qui a été faite pour obtenir d'autres triplets résultats. 
+
+Le triplet de John est le suivant : 
+
+<result>
+<binding name='x'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#John</uri></binding>
+<binding name='t'><uri>http://www.inria.fr/2007/09/11/humans.rdfs#Person</uri></binding>
+</result>
+
+
+Question 2 :
+
+La requête renvoie les personnes mariées. 
+Quand on effectue la requête on obtient 6 réponses.
+
+Question 3 :
+
+La propriété pour l'âge est age.
+La requete suivante donne 6 résultats.
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT * WHERE
+{
+ ?x humans:age ?y
+ FILTER (xsd:integer(?y) > 20)
+}
+
+Question 4 :
+
+La propriété pour la pointure de chaussure est shoesize
+
+1 : Une requete pour extraire les personnes avec leur pointure 
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT * WHERE
+{
+ ?x rdf:type humans:Person
+ ?x humans:shoesize ?y
+}
+
+2 : Une requete pour extraire toute les personnes et si disponible leur pointure 
+On place la partie en rapport à la pointure en optional 
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT * WHERE
+{
+ ?x rdf:type humans:Person 
+ OPTIONAL { 
+    ?x humans:shoesize ?z
+ }
+}
+
+3 : Une requete pour extraire toutes les personnes et si disponible et supérieur à 8 leurs pointure de chaussure.
+On ajoute dans la partie optional un test sur la taille (j'ai considéré ici une supérieur stricte)
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT * WHERE
+{
+ ?x rdf:type humans:Person 
+ OPTIONAL { 
+    ?x humans:shoesize ?z 
+    FILTER (
+     xsd:integer(?z) > 8 
+  )
+ }
+}
+
+4 : Une requete pour extraire toutes les personnes dont la pointure de chaussure est supérieur à 8 ou dpnt la taille de chemise est supérieure à 12. 
+
+Taille des chemises : propriété shirtsize. 
+
+Il faut faire l'union entre les deux propriétés que sont la pointure et la taille de chemise pour obtenir l'ensemble résultat. 
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT * WHERE {
+	?x rdf:type humans:Person
+	{?x humans:shoesize ?y FILTER (xsd:integer(?y) > 8)} UNION
+	{?x humans:shirtsize ?z FILTER (xsd:integer(?z)> 12)}
+}
+
+Question 5 : 
+
+1 : toute les propriétés que possedent John :
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT * WHERE {
+	?x rdf:type humans:Person
+	?x humans:name ?name
+	?x humans:shoesize ?shoe
+	?x humans:age ?age
+	?x humans:shirtsize ?shirt
+	?x humans:trouserssize ?trouser
+	FILTER (?name ="John")
+}
+
+2 : Demander une description de John 
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+DESCRIBE * WHERE {
+	?x rdf:type humans:Person
+	?x humans:name ?name
+	?x humans:shoesize ?shoe
+	?x humans:age ?age
+	?x humans:shirtsize ?shirt
+	?x humans:trouserssize ?trouser
+	FILTER (?name ="John")
+}
+
+On modifie SELECT par DESCRIBE.
+
+Question 6 : 
+
+Il pourrait y avoir plusieurs façons de trouver les enfants d'une personne. 
+La plus évidente est d'utiliser la propriété hasChild qui donne directement les enfants mais il pourrait être faisable de faire dans le sens inverse en utilisant les propriétés hasFather, hasMother et hasParent. 
+
+1 : Les couples (parent,enfant) sont : 
+
+Avec la propriété hasChild :
+
+(Harry, John)
+(Jack,Harry)
+(Flora,Pierre)
+(Gaston,Pierre)
+(Gaston, Jack)
+
+Avec la propriété hasFather :
+(John, Mark)
+
+Avec la propriété hasMother :
+(Catherine, Lucas)
+(Laura,Catherine)
+
+Avec la propriété hasParent :
+(Sophie,John)
+
+2 : Requête pour trouver les personnes ayant au moins un enfant 
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x WHERE
+{
+ ?x humans:hasChild ?y
+}
+
+3 : On a obtenu 5 réponses. On identifie un doublon qui est Gaston (ce qui est attendu vu qu'il possède deux fois la propriété hasChild).
+
+4 : Retrait doublon 
+
+On ajoute après SELECT le mot clé DISTINCT :
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT ?x WHERE
+{
+ ?x humans:hasChild ?y
+}
+
+5 : Requête pour trouver les hommes n'ayant pas d'enfant :
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT ?x WHERE
+{
+?x rdf:type humans:Man
+FILTER NOT EXISTS {
+?x humans:hasChild ?y }
+}
+
+6 : Requête pour trouver les femmes mariées avec les enfants si elles en ont : 
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT ?x ?child WHERE
+{
+?x rdf:type humans:Woman
+?x humans:hasSpouse ?y
+OPTIONAL {?x humans:hasChild ?child}
+}
+
+Question 7 : Requête pour couple de personne avec même taille de chemise 
+
+Attention toujours redondance
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT ?x ?y WHERE
+{
+
+?x humans:shirtsize ?sizex
+?y humans:shirtsize ?sizey
+
+FILTER (?x  !=  ?y)
+
+FILTER (xsd:integer(?sizex) = xsd:integer(?sizey))
+}
+
+Question 8 : Cloture symétrique de la relation hasFriend avec SPARQL
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT ?f ?x WHERE
+{
+?x humans:hasFriend ?f
+}
+
+Question 9 : Toute les personnes qui ne sont pas des hommes :
+
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT ?x WHERE
+{
+  ?x rdf:type humans:Woman
+}
+
+Cette requete n'est pas optimale car on ne considère les choses que de façon binaire : une personne est un homme ou une femme. 
+Or on a dans notre cas plusieurs types qui sont en autre Person, Researcher, Lecturer, Man, Woman avec différentes relations entre eux : certains seront Person et Man ou Person et Woman mais pas toujours. 
+
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT ?x WHERE
+{
+  ?x rdf:typehumans:Person
+  FILTER NOT EXISTS {
+  ?x rdf:type humans:Man
+  }
+}
+
+De la même façon si on considère l'ensemble des Person moins l'ensemble des Man : on aura des hommes qui ne sont pas caractérisés par la classe Man et il y aura des femmes caractérisés par la classe Woman mais pas par la classe Person.
+
